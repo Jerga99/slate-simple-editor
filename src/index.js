@@ -8,7 +8,8 @@ import './lib/index.scss';
 ReactDOM.render(
   <React.StrictMode>
     <div className="container">
-      <Editor onSave={() => {}} />
+      <Editor
+        onSave={() => {}} />
     </div>
   </React.StrictMode>,
   document.getElementById('root')

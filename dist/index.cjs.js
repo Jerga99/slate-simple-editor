@@ -835,7 +835,9 @@ var withLayout = function withLayout(editor) {
 };
 
 var BlogEditor = function BlogEditor(_ref5) {
-  var onSave = _ref5.onSave,
+  var _ref5$saveMessage = _ref5.saveMessage,
+      saveMessage = _ref5$saveMessage === void 0 ? "saving..." : _ref5$saveMessage,
+      onSave = _ref5.onSave,
       _ref5$header = _ref5.header,
       header = _ref5$header === void 0 ? "Write your story" : _ref5$header,
       loading = _ref5.loading,
@@ -889,17 +891,17 @@ var BlogEditor = function BlogEditor(_ref5) {
   return /*#__PURE__*/React__default.createElement("div", {
     className: "editor-container"
   }, /*#__PURE__*/React__default.createElement("div", {
-    className: "mb-2 editor-header"
+    className: "editor-header"
   }, /*#__PURE__*/React__default.createElement("div", {
     className: "editor-title"
   }, header), /*#__PURE__*/React__default.createElement("div", {
     className: "save-button-container"
-  }, /*#__PURE__*/React__default.createElement("button", {
+  }, loading && /*#__PURE__*/React__default.createElement("div", {
+    className: "save-message"
+  }, saveMessage), /*#__PURE__*/React__default.createElement("button", {
     onClick: save,
     className: "btn btn-success"
-  }, "Save")), loading && /*#__PURE__*/React__default.createElement("span", {
-    className: "ml-3"
-  }, "saving...")), /*#__PURE__*/React__default.createElement("hr", null), /*#__PURE__*/React__default.createElement(slateReact.Slate, {
+  }, "Save"))), /*#__PURE__*/React__default.createElement("hr", null), /*#__PURE__*/React__default.createElement(slateReact.Slate, {
     editor: editor,
     value: value,
     onChange: function onChange(value) {

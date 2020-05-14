@@ -14,6 +14,10 @@
   .editor-container .editor-header .save-button-container {
     display: flex;
     align-self: center; }
+  .editor-container .editor-header .save-message {
+    display: flex;
+    align-self: center;
+    margin-right: 20px; }
 
 .editor-container body {
   margin: 0; }
