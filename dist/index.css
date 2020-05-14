@@ -1,0 +1,76 @@
+.editor-container html,
+.editor-container input,
+.editor-container textarea {
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.4;
+  background: #eee; }
+
+.editor-container .editor-header {
+  display: flex;
+  justify-content: space-between; }
+  .editor-container .editor-header .editor-title {
+    font-weight: bold;
+    font-size: 2.5rem; }
+  .editor-container .editor-header .save-button-container {
+    display: flex;
+    align-self: center; }
+
+.editor-container body {
+  margin: 0; }
+
+.editor-container p {
+  margin: 0;
+  font-size: 20px; }
+
+.editor-container pre {
+  padding: 10px;
+  background-color: #eee;
+  white-space: pre-wrap; }
+
+.editor-container :not(pre) > code {
+  font-family: monospace;
+  background-color: #eee;
+  padding: 3px; }
+
+.editor-container img {
+  max-width: 100%;
+  max-height: 20em; }
+
+.editor-container blockquote {
+  border-left: 2px solid #ddd;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 10px;
+  color: #aaa;
+  font-style: italic; }
+
+.editor-container blockquote[dir='rtl'] {
+  border-left: none;
+  padding-left: 0;
+  padding-right: 10px;
+  border-right: 2px solid #ddd; }
+
+.editor-container table {
+  border-collapse: collapse; }
+
+.editor-container td {
+  padding: 10px;
+  border: 2px solid #ddd; }
+
+.editor-container input {
+  box-sizing: border-box;
+  font-size: 0.85em;
+  width: 100%;
+  padding: 0.5em;
+  border: 2px solid #ddd;
+  background: #fafafa; }
+
+.editor-container input:focus {
+  outline: 0;
+  border-color: blue; }
+
+.editor-container [data-slate-editor] > * + * {
+  margin-top: 1em; }
+
+.editor-container h2 {
+  margin-top: 5px !important; }
