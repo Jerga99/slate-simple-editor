@@ -889,7 +889,7 @@ var BlogEditor = function BlogEditor(_ref5) {
   };
 
   return /*#__PURE__*/React__default.createElement("div", {
-    className: "editor-container"
+    className: "slate-container"
   }, /*#__PURE__*/React__default.createElement("div", {
     className: "editor-header"
   }, /*#__PURE__*/React__default.createElement("div", {
