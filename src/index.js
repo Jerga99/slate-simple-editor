@@ -9,7 +9,7 @@ ReactDOM.render(
   <React.StrictMode>
     <div className="container">
       <Editor
-        onSave={() => {}} />
+        onSave={() => {console.log('saving')}} />
     </div>
   </React.StrictMode>,
   document.getElementById('root')
