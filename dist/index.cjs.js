@@ -14,6 +14,21 @@ var emotion = require('emotion');
 var slateHyperscript = require('slate-hyperscript');
 var escapeHtml = _interopDefault(require('escape-html'));
 
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
 function _extends() {
   _extends = Object.assign || function (target) {
     for (var i = 1; i < arguments.length; i++) {
@@ -32,203 +47,484 @@ function _extends() {
   return _extends.apply(this, arguments);
 }
 
-const Button = React__default.forwardRef(({
-  className,
-  active,
-  reversed,
-  ...props
-}, ref) => /*#__PURE__*/React__default.createElement("span", _extends({}, props, {
-  ref: ref,
-  className: emotion.cx(className, emotion.css`
-          cursor: pointer;
-          color: ${reversed ? active ? 'white' : '#aaa' : active ? 'black' : '#ccc'};
-        `)
-})));
-const EditorValue = React__default.forwardRef(({
-  className,
-  value,
-  ...props
-}, ref) => {
-  const textLines = value.document.nodes.map(node => node.text).toArray().join('\n');
+function ownKeys(object, enumerableOnly) {
+  var keys = Object.keys(object);
+
+  if (Object.getOwnPropertySymbols) {
+    var symbols = Object.getOwnPropertySymbols(object);
+    if (enumerableOnly) symbols = symbols.filter(function (sym) {
+      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+    });
+    keys.push.apply(keys, symbols);
+  }
+
+  return keys;
+}
+
+function _objectSpread2(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+
+    if (i % 2) {
+      ownKeys(Object(source), true).forEach(function (key) {
+        _defineProperty(target, key, source[key]);
+      });
+    } else if (Object.getOwnPropertyDescriptors) {
+      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+    } else {
+      ownKeys(Object(source)).forEach(function (key) {
+        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+      });
+    }
+  }
+
+  return target;
+}
+
+function _objectWithoutPropertiesLoose(source, excluded) {
+  if (source == null) return {};
+  var target = {};
+  var sourceKeys = Object.keys(source);
+  var key, i;
+
+  for (i = 0; i < sourceKeys.length; i++) {
+    key = sourceKeys[i];
+    if (excluded.indexOf(key) >= 0) continue;
+    target[key] = source[key];
+  }
+
+  return target;
+}
+
+function _objectWithoutProperties(source, excluded) {
+  if (source == null) return {};
+
+  var target = _objectWithoutPropertiesLoose(source, excluded);
+
+  var key, i;
+
+  if (Object.getOwnPropertySymbols) {
+    var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
+
+    for (i = 0; i < sourceSymbolKeys.length; i++) {
+      key = sourceSymbolKeys[i];
+      if (excluded.indexOf(key) >= 0) continue;
+      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
+      target[key] = source[key];
+    }
+  }
+
+  return target;
+}
+
+function _taggedTemplateLiteral(strings, raw) {
+  if (!raw) {
+    raw = strings.slice(0);
+  }
+
+  return Object.freeze(Object.defineProperties(strings, {
+    raw: {
+      value: Object.freeze(raw)
+    }
+  }));
+}
+
+function _slicedToArray(arr, i) {
+  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
+}
+
+function _toConsumableArray(arr) {
+  return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();
+}
+
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) return _arrayLikeToArray(arr);
+}
+
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+
+function _iterableToArray(iter) {
+  if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);
+}
+
+function _iterableToArrayLimit(arr, i) {
+  if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _e = undefined;
+
+  try {
+    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+
+      if (i && _arr.length === i) break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) _i["return"]();
+    } finally {
+      if (_d) throw _e;
+    }
+  }
+
+  return _arr;
+}
+
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+}
+
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+
+  for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
+
+  return arr2;
+}
+
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
+function _createForOfIteratorHelper(o) {
+  if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) {
+    if (Array.isArray(o) || (o = _unsupportedIterableToArray(o))) {
+      var i = 0;
+
+      var F = function () {};
+
+      return {
+        s: F,
+        n: function () {
+          if (i >= o.length) return {
+            done: true
+          };
+          return {
+            done: false,
+            value: o[i++]
+          };
+        },
+        e: function (e) {
+          throw e;
+        },
+        f: F
+      };
+    }
+
+    throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+  }
+
+  var it,
+      normalCompletion = true,
+      didErr = false,
+      err;
+  return {
+    s: function () {
+      it = o[Symbol.iterator]();
+    },
+    n: function () {
+      var step = it.next();
+      normalCompletion = step.done;
+      return step;
+    },
+    e: function (e) {
+      didErr = true;
+      err = e;
+    },
+    f: function () {
+      try {
+        if (!normalCompletion && it.return != null) it.return();
+      } finally {
+        if (didErr) throw err;
+      }
+    }
+  };
+}
+
+function _templateObject8() {
+  var data = _taggedTemplateLiteral(["\n        position: relative;\n        padding: 1px 18px 17px;\n        margin: 0 -20px;\n        border-bottom: 2px solid #eee;\n        margin-bottom: 20px;\n      "]);
+
+  _templateObject8 = function _templateObject8() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject7() {
+  var data = _taggedTemplateLiteral(["\n        & > * {\n          display: inline-block;\n        }\n        & > * + * {\n          margin-left: 15px;\n        }\n      "]);
+
+  _templateObject7 = function _templateObject7() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject6() {
+  var data = _taggedTemplateLiteral(["\n        white-space: pre-wrap;\n        margin: 0 -20px 10px;\n        padding: 10px 20px;\n        font-size: 14px;\n        background: #f8f8e8;\n      "]);
+
+  _templateObject6 = function _templateObject6() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject5() {
+  var data = _taggedTemplateLiteral(["\n        font-size: 18px;\n        vertical-align: text-bottom;\n      "]);
+
+  _templateObject5 = function _templateObject5() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject4() {
+  var data = _taggedTemplateLiteral(["\n            color: #404040;\n            font: 12px monospace;\n            white-space: pre-wrap;\n            padding: 10px 20px;\n            div {\n              margin: 0 0 0.5em;\n            }\n          "]);
+
+  _templateObject4 = function _templateObject4() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject3() {
+  var data = _taggedTemplateLiteral(["\n            font-size: 14px;\n            padding: 5px 20px;\n            color: #404040;\n            border-top: 2px solid #eeeeee;\n            background: #f8f8f8;\n          "]);
+
+  _templateObject3 = function _templateObject3() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject2() {
+  var data = _taggedTemplateLiteral(["\n            margin: 30px -20px 0;\n          "]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["\n          cursor: pointer;\n          color: ", ";\n        "]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+var Button = React__default.forwardRef(function (_ref, ref) {
+  var className = _ref.className,
+      active = _ref.active,
+      reversed = _ref.reversed,
+      props = _objectWithoutProperties(_ref, ["className", "active", "reversed"]);
+
+  return /*#__PURE__*/React__default.createElement("span", _extends({}, props, {
+    ref: ref,
+    className: emotion.cx(className, emotion.css(_templateObject(), reversed ? active ? 'white' : '#aaa' : active ? 'black' : '#ccc'))
+  }));
+});
+var EditorValue = React__default.forwardRef(function (_ref2, ref) {
+  var className = _ref2.className,
+      value = _ref2.value,
+      props = _objectWithoutProperties(_ref2, ["className", "value"]);
+
+  var textLines = value.document.nodes.map(function (node) {
+    return node.text;
+  }).toArray().join('\n');
   return /*#__PURE__*/React__default.createElement("div", _extends({
     ref: ref
   }, props, {
-    className: emotion.cx(className, emotion.css`
-            margin: 30px -20px 0;
-          `)
+    className: emotion.cx(className, emotion.css(_templateObject2()))
   }), /*#__PURE__*/React__default.createElement("div", {
-    className: emotion.css`
-            font-size: 14px;
-            padding: 5px 20px;
-            color: #404040;
-            border-top: 2px solid #eeeeee;
-            background: #f8f8f8;
-          `
+    className: emotion.css(_templateObject3())
   }, "Slate's value as text"), /*#__PURE__*/React__default.createElement("div", {
-    className: emotion.css`
-            color: #404040;
-            font: 12px monospace;
-            white-space: pre-wrap;
-            padding: 10px 20px;
-            div {
-              margin: 0 0 0.5em;
-            }
-          `
+    className: emotion.css(_templateObject4())
   }, textLines));
 });
-const Icon = React__default.forwardRef(({
-  className,
-  ...props
-}, ref) => /*#__PURE__*/React__default.createElement("span", _extends({}, props, {
-  ref: ref,
-  className: emotion.cx('material-icons', className, emotion.css`
-        font-size: 18px;
-        vertical-align: text-bottom;
-      `)
-})));
-const Instruction = React__default.forwardRef(({
-  className,
-  ...props
-}, ref) => /*#__PURE__*/React__default.createElement("div", _extends({}, props, {
-  ref: ref,
-  className: emotion.cx(className, emotion.css`
-        white-space: pre-wrap;
-        margin: 0 -20px 10px;
-        padding: 10px 20px;
-        font-size: 14px;
-        background: #f8f8e8;
-      `)
-})));
-const Menu = React__default.forwardRef(({
-  className,
-  ...props
-}, ref) => /*#__PURE__*/React__default.createElement("div", _extends({}, props, {
-  ref: ref,
-  className: emotion.cx(className, emotion.css`
-        & > * {
-          display: inline-block;
-        }
-        & > * + * {
-          margin-left: 15px;
-        }
-      `)
-})));
-const Portal = ({
-  children
-}) => {
+var Icon = React__default.forwardRef(function (_ref3, ref) {
+  var className = _ref3.className,
+      props = _objectWithoutProperties(_ref3, ["className"]);
+
+  return /*#__PURE__*/React__default.createElement("span", _extends({}, props, {
+    ref: ref,
+    className: emotion.cx('material-icons', className, emotion.css(_templateObject5()))
+  }));
+});
+var Instruction = React__default.forwardRef(function (_ref4, ref) {
+  var className = _ref4.className,
+      props = _objectWithoutProperties(_ref4, ["className"]);
+
+  return /*#__PURE__*/React__default.createElement("div", _extends({}, props, {
+    ref: ref,
+    className: emotion.cx(className, emotion.css(_templateObject6()))
+  }));
+});
+var Menu = React__default.forwardRef(function (_ref5, ref) {
+  var className = _ref5.className,
+      props = _objectWithoutProperties(_ref5, ["className"]);
+
+  return /*#__PURE__*/React__default.createElement("div", _extends({}, props, {
+    ref: ref,
+    className: emotion.cx(className, emotion.css(_templateObject7()))
+  }));
+});
+var Portal = function Portal(_ref6) {
+  var children = _ref6.children;
   return ReactDOM.createPortal(children, document.body);
 };
-const Toolbar = React__default.forwardRef(({
-  className,
-  ...props
-}, ref) => /*#__PURE__*/React__default.createElement(Menu, _extends({}, props, {
-  ref: ref,
-  className: emotion.cx(className, emotion.css`
-        position: relative;
-        padding: 1px 18px 17px;
-        margin: 0 -20px;
-        border-bottom: 2px solid #eee;
-        margin-bottom: 20px;
-      `)
-})));
+var Toolbar = React__default.forwardRef(function (_ref7, ref) {
+  var className = _ref7.className,
+      props = _objectWithoutProperties(_ref7, ["className"]);
 
-const ELEMENT_TAGS = {
-  BLOCKQUOTE: () => ({
-    type: 'block-quote'
-  }),
-  H1: () => ({
-    type: 'heading-one'
-  }),
-  H2: () => ({
-    type: 'heading-two'
-  }),
-  LI: () => ({
-    type: 'list-item'
-  }),
-  UL: () => ({
-    type: 'bulleted-list'
-  }),
-  OL: () => ({
-    type: 'numbered-list'
-  }),
-  P: () => ({
-    type: 'paragraph'
-  })
+  return /*#__PURE__*/React__default.createElement(Menu, _extends({}, props, {
+    ref: ref,
+    className: emotion.cx(className, emotion.css(_templateObject8()))
+  }));
+});
+
+var ELEMENT_TAGS = {
+  BLOCKQUOTE: function BLOCKQUOTE() {
+    return {
+      type: 'block-quote'
+    };
+  },
+  H1: function H1() {
+    return {
+      type: 'heading-one'
+    };
+  },
+  H2: function H2() {
+    return {
+      type: 'heading-two'
+    };
+  },
+  LI: function LI() {
+    return {
+      type: 'list-item'
+    };
+  },
+  UL: function UL() {
+    return {
+      type: 'bulleted-list'
+    };
+  },
+  OL: function OL() {
+    return {
+      type: 'numbered-list'
+    };
+  },
+  P: function P() {
+    return {
+      type: 'paragraph'
+    };
+  }
 }; // COMPAT: `B` is omitted here because Google Docs uses `<b>` in weird ways.
 
-const TEXT_TAGS = {
-  CODE: () => ({
-    code: true
-  }),
-  EM: () => ({
-    italic: true
-  }),
-  STRONG: () => ({
-    bold: true
-  }),
-  U: () => ({
-    underlined: true
-  })
+var TEXT_TAGS = {
+  CODE: function CODE() {
+    return {
+      code: true
+    };
+  },
+  EM: function EM() {
+    return {
+      italic: true
+    };
+  },
+  STRONG: function STRONG() {
+    return {
+      bold: true
+    };
+  },
+  U: function U() {
+    return {
+      underlined: true
+    };
+  }
 };
 
-const applyTag = node => {
+var applyTag = function applyTag(node) {
   node.text = node.text && escapeHtml(node.text);
 
   if (node.bold) {
-    node.text = `<strong>${node.text}</strong>`;
+    node.text = "<strong>".concat(node.text, "</strong>");
   }
 
   if (node.italic) {
-    node.text = `<em>${node.text}</em>`;
+    node.text = "<em>".concat(node.text, "</em>");
   }
 
   if (node.underlined) {
-    node.text = `<u>${node.text}</u>`;
+    node.text = "<u>".concat(node.text, "</u>");
   }
 
   if (node.code) {
-    node.text = `<code>${node.text}</code>`;
+    node.text = "<code>".concat(node.text, "</code>");
   }
 
   return node.text;
 };
 
-const serialize = node => {
+var serialize = function serialize(node) {
   if (slate.Text.isText(node)) {
-    return applyTag({ ...node
-    });
+    return applyTag(_objectSpread2({}, node));
   }
 
-  const children = node.children.map(n => serialize(n)).join('');
+  var children = node.children.map(function (n) {
+    return serialize(n);
+  }).join('');
 
   switch (node.type) {
     case 'block-quote':
-      return `<blockquote>${children}</blockquote>`;
+      return "<blockquote>".concat(children, "</blockquote>");
 
     case 'bulleted-list':
-      return `<ul>${children}</ul>`;
+      return "<ul>".concat(children, "</ul>");
 
     case 'heading-one':
-      return `<h1>${children}</h1>`;
+      return "<h1>".concat(children, "</h1>");
 
     case 'heading-two':
-      return `<h2>${children}</h2>`;
+      return "<h2>".concat(children, "</h2>");
 
     case 'list-item':
-      return `<li>${children}</li>`;
+      return "<li>".concat(children, "</li>");
 
     case 'numbered-list':
-      return `<ol>${children}</ol>`;
+      return "<ol>".concat(children, "</ol>");
 
     case 'paragraph':
-      return `<p>${children}</p>`;
+      return "<p>".concat(children, "</p>");
 
     default:
       return children;
   }
 };
 
-const deserialize = el => {
+var deserialize = function deserialize(el) {
   if (el.nodeType === 3) {
     return el.textContent;
   } else if (el.nodeType !== 1) {
@@ -237,69 +533,80 @@ const deserialize = el => {
     return '\n';
   }
 
-  const {
-    nodeName
-  } = el;
-  let parent = el;
+  var nodeName = el.nodeName;
+  var parent = el;
 
   if (nodeName === 'PRE' && el.childNodes[0] && el.childNodes[0].nodeName === 'CODE') {
     parent = el.childNodes[0];
   }
 
-  const children = Array.from(parent.childNodes).map(deserialize).flat();
+  var children = Array.from(parent.childNodes).map(deserialize).flat();
 
   if (el.nodeName === 'BODY') {
     return slateHyperscript.jsx('fragment', {}, children);
   }
 
   if (ELEMENT_TAGS[nodeName]) {
-    const attrs = ELEMENT_TAGS[nodeName](el);
+    var attrs = ELEMENT_TAGS[nodeName](el);
 
-    const _children = children.length === 0 ? [""] : children;
+    var _children = children.length === 0 ? [""] : children;
 
     return slateHyperscript.jsx('element', attrs, _children);
   }
 
   if (TEXT_TAGS[nodeName]) {
-    const attrs = TEXT_TAGS[nodeName](el);
-    return children.map(child => slateHyperscript.jsx('text', attrs, child));
+    var _attrs = TEXT_TAGS[nodeName](el);
+
+    return children.map(function (child) {
+      return slateHyperscript.jsx('text', _attrs, child);
+    });
   }
 
   return children;
 };
 
-const isBlockActive = (editor, format) => {
-  const [match] = slate.Editor.nodes(editor, {
-    match: n => n.type === format
-  });
+var isBlockActive = function isBlockActive(editor, format) {
+  var _Editor$nodes = slate.Editor.nodes(editor, {
+    match: function match(n) {
+      return n.type === format;
+    }
+  }),
+      _Editor$nodes2 = _slicedToArray(_Editor$nodes, 1),
+      match = _Editor$nodes2[0];
+
   return !!match;
 };
 
-const isFormatActive = (editor, format) => {
-  const [match] = slate.Editor.nodes(editor, {
-    match: n => n[format] === true,
+var isFormatActive = function isFormatActive(editor, format) {
+  var _Editor$nodes3 = slate.Editor.nodes(editor, {
+    match: function match(n) {
+      return n[format] === true;
+    },
     mode: 'all'
-  });
+  }),
+      _Editor$nodes4 = _slicedToArray(_Editor$nodes3, 1),
+      match = _Editor$nodes4[0];
+
   return !!match;
 };
 
-const toggleFormat = (editor, format) => {
-  const isActive = isFormatActive(editor, format);
-  slate.Transforms.setNodes(editor, {
-    [format]: isActive ? null : true
-  }, {
+var toggleFormat = function toggleFormat(editor, format) {
+  var isActive = isFormatActive(editor, format);
+  slate.Transforms.setNodes(editor, _defineProperty({}, format, isActive ? null : true), {
     match: slate.Text.isText,
     split: true
   });
 };
 
-const LIST_TYPES = ['numbered-list', 'bulleted-list'];
+var LIST_TYPES = ['numbered-list', 'bulleted-list'];
 
-const toggleBlock = (editor, format) => {
-  const isActive = isBlockActive(editor, format);
-  const isList = LIST_TYPES.includes(format);
+var toggleBlock = function toggleBlock(editor, format) {
+  var isActive = isBlockActive(editor, format);
+  var isList = LIST_TYPES.includes(format);
   slate.Transforms.unwrapNodes(editor, {
-    match: n => LIST_TYPES.includes(n.type),
+    match: function match(n) {
+      return LIST_TYPES.includes(n.type);
+    },
     split: true
   });
   slate.Transforms.setNodes(editor, {
@@ -307,7 +614,7 @@ const toggleBlock = (editor, format) => {
   });
 
   if (!isActive && isList) {
-    const block = {
+    var block = {
       type: format,
       children: []
     };
@@ -315,44 +622,50 @@ const toggleBlock = (editor, format) => {
   }
 };
 
-const BlockButton = ({
-  format,
-  icon
-}) => {
-  const editor = slateReact.useSlate();
+function _templateObject$1() {
+  var data = _taggedTemplateLiteral(["\n          padding: 8px 7px 6px;\n          position: absolute;\n          z-index: 1;\n          top: -10000px;\n          left: -10000px;\n          margin-top: -6px;\n          opacity: 0;\n          background-color: #222;\n          border-radius: 4px;\n          transition: opacity 0.75s;\n        "]);
+
+  _templateObject$1 = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+var BlockButton = function BlockButton(_ref) {
+  var format = _ref.format,
+      icon = _ref.icon;
+  var editor = slateReact.useSlate();
   return /*#__PURE__*/React__default.createElement(Button, {
     reversed: true,
     active: isBlockActive(editor, format),
-    onMouseDown: event => {
+    onMouseDown: function onMouseDown(event) {
       event.preventDefault();
       toggleBlock(editor, format);
     }
   }, /*#__PURE__*/React__default.createElement(Icon, null, icon));
 };
 
-const FormatButton = ({
-  format,
-  icon
-}) => {
-  const editor = slateReact.useSlate();
+var FormatButton = function FormatButton(_ref2) {
+  var format = _ref2.format,
+      icon = _ref2.icon;
+  var editor = slateReact.useSlate();
   return /*#__PURE__*/React__default.createElement(Button, {
     reversed: true,
     active: isFormatActive(editor, format),
-    onMouseDown: event => {
+    onMouseDown: function onMouseDown(event) {
       event.preventDefault();
       toggleFormat(editor, format);
     }
   }, /*#__PURE__*/React__default.createElement(Icon, null, icon));
 };
 
-const HoveringToolbar = () => {
-  const ref = React.useRef();
-  const editor = slateReact.useSlate();
-  React.useEffect(() => {
-    const el = ref.current;
-    const {
-      selection
-    } = editor;
+var HoveringToolbar = function HoveringToolbar() {
+  var ref = React.useRef();
+  var editor = slateReact.useSlate();
+  React.useEffect(function () {
+    var el = ref.current;
+    var selection = editor.selection;
 
     if (!el) {
       return;
@@ -363,27 +676,16 @@ const HoveringToolbar = () => {
       return;
     }
 
-    const domSelection = window.getSelection();
-    const domRange = domSelection.getRangeAt(0);
-    const rect = domRange.getBoundingClientRect();
+    var domSelection = window.getSelection();
+    var domRange = domSelection.getRangeAt(0);
+    var rect = domRange.getBoundingClientRect();
     el.style.opacity = 1;
-    el.style.top = `${rect.top + window.pageYOffset - el.offsetHeight}px`;
-    el.style.left = `${rect.left + window.pageXOffset - el.offsetWidth / 2 + rect.width / 2}px`;
+    el.style.top = "".concat(rect.top + window.pageYOffset - el.offsetHeight, "px");
+    el.style.left = "".concat(rect.left + window.pageXOffset - el.offsetWidth / 2 + rect.width / 2, "px");
   });
   return /*#__PURE__*/React__default.createElement(Portal, null, /*#__PURE__*/React__default.createElement(Menu, {
     ref: ref,
-    className: emotion.css`
-          padding: 8px 7px 6px;
-          position: absolute;
-          z-index: 1;
-          top: -10000px;
-          left: -10000px;
-          margin-top: -6px;
-          opacity: 0;
-          background-color: #222;
-          border-radius: 4px;
-          transition: opacity 0.75s;
-        `
+    className: emotion.css(_templateObject$1())
   }, /*#__PURE__*/React__default.createElement(FormatButton, {
     format: "bold",
     icon: "format_bold"
@@ -414,11 +716,11 @@ const HoveringToolbar = () => {
   })));
 };
 
-const Leaf = ({
-  attributes,
-  children,
-  leaf
-}) => {
+var Leaf = function Leaf(_ref) {
+  var attributes = _ref.attributes,
+      children = _ref.children,
+      leaf = _ref.leaf;
+
   if (leaf.bold) {
     children = /*#__PURE__*/React__default.createElement("strong", null, children);
   }
@@ -438,11 +740,11 @@ const Leaf = ({
   return /*#__PURE__*/React__default.createElement("span", attributes, children);
 };
 
-const Element = ({
-  attributes,
-  children,
-  element
-}) => {
+var Element = function Element(_ref2) {
+  var attributes = _ref2.attributes,
+      children = _ref2.children,
+      element = _ref2.element;
+
   switch (element.type) {
     case 'block-quote':
       return /*#__PURE__*/React__default.createElement("blockquote", attributes, children);
@@ -470,15 +772,17 @@ const Element = ({
   }
 };
 
-const withLayout = (editor, value) => {
-  const {
-    normalizeNode
-  } = editor;
+var withLayout = function withLayout(editor, value) {
+  var normalizeNode = editor.normalizeNode;
 
-  editor.normalizeNode = ([node, path]) => {
+  editor.normalizeNode = function (_ref3) {
+    var _ref4 = _slicedToArray(_ref3, 2),
+        node = _ref4[0],
+        path = _ref4[1];
+
     if (path.length === 0) {
       if (editor.children.length < 1) {
-        const title = {
+        var title = {
           type: 'heading-one',
           children: [{
             text: ''
@@ -490,7 +794,7 @@ const withLayout = (editor, value) => {
       }
 
       if (editor.children.length < 2) {
-        const subtitle = {
+        var subtitle = {
           type: 'heading-two',
           children: [{
             text: ''
@@ -502,7 +806,7 @@ const withLayout = (editor, value) => {
       }
 
       if (editor.children.length < 3) {
-        const paragraph = {
+        var paragraph = {
           type: 'paragraph',
           children: [{
             text: ''
@@ -513,17 +817,30 @@ const withLayout = (editor, value) => {
         });
       }
 
-      for (const [child, childPath] of slate.Node.children(editor, path)) {
-        const type = childPath[0] === 0 ? 'heading-one' : childPath[0] === 1 ? 'heading-two' : 'paragraph';
-        const canAdd = childPath[0] === 0 || childPath[0] === 1 || childPath[0] === 2;
+      var _iterator = _createForOfIteratorHelper(slate.Node.children(editor, path)),
+          _step;
 
-        if (canAdd && child.type !== type) {
-          slate.Transforms.setNodes(editor, {
-            type
-          }, {
-            at: childPath
-          });
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var _step$value = _slicedToArray(_step.value, 2),
+              child = _step$value[0],
+              childPath = _step$value[1];
+
+          var type = childPath[0] === 0 ? 'heading-one' : childPath[0] === 1 ? 'heading-two' : 'paragraph';
+          var canAdd = childPath[0] === 0 || childPath[0] === 1 || childPath[0] === 2;
+
+          if (canAdd && child.type !== type) {
+            slate.Transforms.setNodes(editor, {
+              type: type
+            }, {
+              at: childPath
+            });
+          }
         }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
       }
     }
 
@@ -533,48 +850,63 @@ const withLayout = (editor, value) => {
   return editor;
 };
 
-const BlogEditor = ({
-  saveMessage = "saving...",
-  onSave,
-  header = "Write your story",
-  loading,
-  initialContent
-}) => {
-  const [value, setValue] = React.useState(initialValue);
-  const editor = React.useMemo(() => withLayout(slateHistory.withHistory(slateReact.withReact(slate.createEditor()))), []);
-  const renderElement = React.useCallback(props => /*#__PURE__*/React__default.createElement(Element, props), []);
-  const renderLeaf = React.useCallback(props => /*#__PURE__*/React__default.createElement(Leaf, props), []);
-  React.useEffect(() => {
+var BlogEditor = function BlogEditor(_ref5) {
+  var _ref5$saveMessage = _ref5.saveMessage,
+      saveMessage = _ref5$saveMessage === void 0 ? "saving..." : _ref5$saveMessage,
+      onSave = _ref5.onSave,
+      _ref5$header = _ref5.header,
+      header = _ref5$header === void 0 ? "Write your story" : _ref5$header,
+      loading = _ref5.loading,
+      initialContent = _ref5.initialContent;
+
+  var _useState = React.useState(initialValue),
+      _useState2 = _slicedToArray(_useState, 2),
+      value = _useState2[0],
+      setValue = _useState2[1];
+
+  var editor = React.useMemo(function () {
+    return withLayout(slateHistory.withHistory(slateReact.withReact(slate.createEditor())));
+  }, []);
+  var renderElement = React.useCallback(function (props) {
+    return /*#__PURE__*/React__default.createElement(Element, props);
+  }, []);
+  var renderLeaf = React.useCallback(function (props) {
+    return /*#__PURE__*/React__default.createElement(Leaf, props);
+  }, []);
+  React.useEffect(function () {
     if (initialContent) {
-      const document = new DOMParser().parseFromString(initialContent, 'text/html');
-      const deserialized = deserialize(document.body);
+      var document = new DOMParser().parseFromString(initialContent, 'text/html');
+      var deserialized = deserialize(document.body);
 
       if (deserialized && deserialized.length === 1 && deserialized[0].text) {
-        deserialized[0].children = [{ ...deserialized[0]
-        }];
+        deserialized[0].children = [_objectSpread2({}, deserialized[0])];
         deserialized[0].type = 'paragraph';
         delete deserialized[0].text;
-        setValue([...initialValue, ...deserialized]);
+        setValue([].concat(initialValue, _toConsumableArray(deserialized)));
       } else {
         setValue(deserialize(document.body));
       }
     }
   }, [initialContent]);
 
-  const save = () => {
-    const serialized = serialize({
+  var save = function save() {
+    var serialized = serialize({
       children: value
     });
-    const title = value[0] && value[0].children.map(n => n.text).join('') || '';
-    const subTitle = value[1] && value[1].children.map(n => n.text).join('') || '';
+    var title = value[0] && value[0].children.map(function (n) {
+      return n.text;
+    }).join('') || '';
+    var subTitle = value[1] && value[1].children.map(function (n) {
+      return n.text;
+    }).join('') || '';
     onSave({
       content: serialized,
-      title,
-      subTitle
+      title: title,
+      subTitle: subTitle
     });
   };
 
-  const onKeyDown = event => {
+  var onKeyDown = function onKeyDown(event) {
     if (!loading && event.which === 83 && (event.ctrlKey || event.metaKey)) {
       event.preventDefault();
       save();
@@ -597,17 +929,17 @@ const BlogEditor = ({
   }, "Save"))), /*#__PURE__*/React__default.createElement("hr", null), /*#__PURE__*/React__default.createElement(slateReact.Slate, {
     editor: editor,
     value: value,
-    onChange: value => setValue(value)
+    onChange: function onChange(value) {
+      return setValue(value);
+    }
   }, /*#__PURE__*/React__default.createElement(HoveringToolbar, null), /*#__PURE__*/React__default.createElement(slateReact.Editable, {
     renderElement: renderElement,
     renderLeaf: renderLeaf,
     onKeyDown: onKeyDown
-  }), /*#__PURE__*/React__default.createElement("style", null, `
-            @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
-          `)));
+  }), /*#__PURE__*/React__default.createElement("style", null, "\n            @import url(\"https://fonts.googleapis.com/icon?family=Material+Icons\");\n          ")));
 };
 
-const initialValue = [{
+var initialValue = [{
   type: 'heading-one',
   children: [{
     text: 'Title'
@@ -619,19 +951,29 @@ const initialValue = [{
   }]
 }];
 
-const SlateView = ({
-  initialContent
-}) => {
-  const [value, setValue] = React.useState([]);
-  const editor = React.useMemo(() => slateReact.withReact(slate.createEditor()), []);
-  const renderElement = React.useCallback(props => /*#__PURE__*/React__default.createElement(Element, props), []);
-  const renderLeaf = React.useCallback(props => /*#__PURE__*/React__default.createElement(Leaf, props), []);
+var SlateView = function SlateView(_ref) {
+  var initialContent = _ref.initialContent;
 
-  const Leaf = ({
-    attributes,
-    children,
-    leaf
-  }) => {
+  var _useState = React.useState([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      value = _useState2[0],
+      setValue = _useState2[1];
+
+  var editor = React.useMemo(function () {
+    return slateReact.withReact(slate.createEditor());
+  }, []);
+  var renderElement = React.useCallback(function (props) {
+    return /*#__PURE__*/React__default.createElement(Element, props);
+  }, []);
+  var renderLeaf = React.useCallback(function (props) {
+    return /*#__PURE__*/React__default.createElement(Leaf, props);
+  }, []);
+
+  var Leaf = function Leaf(_ref2) {
+    var attributes = _ref2.attributes,
+        children = _ref2.children,
+        leaf = _ref2.leaf;
+
     if (leaf.bold) {
       children = /*#__PURE__*/React__default.createElement("strong", null, children);
     }
@@ -651,11 +993,11 @@ const SlateView = ({
     return /*#__PURE__*/React__default.createElement("span", attributes, children);
   };
 
-  const Element = ({
-    attributes,
-    children,
-    element
-  }) => {
+  var Element = function Element(_ref3) {
+    var attributes = _ref3.attributes,
+        children = _ref3.children,
+        element = _ref3.element;
+
     switch (element.type) {
       case 'block-quote':
         return /*#__PURE__*/React__default.createElement("blockquote", attributes, children);
@@ -683,16 +1025,18 @@ const SlateView = ({
     }
   };
 
-  React.useEffect(() => {
+  React.useEffect(function () {
     if (initialContent) {
-      const document = new DOMParser().parseFromString(initialContent, 'text/html');
+      var document = new DOMParser().parseFromString(initialContent, 'text/html');
       setValue(deserialize(document.body));
     }
   }, [initialContent]);
   return /*#__PURE__*/React__default.createElement(slateReact.Slate, {
     editor: editor,
     value: value,
-    onChange: value => setValue(value)
+    onChange: function onChange(value) {
+      return setValue(value);
+    }
   }, /*#__PURE__*/React__default.createElement(slateReact.Editable, {
     readOnly: true,
     renderElement: renderElement,

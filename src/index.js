@@ -9,6 +9,7 @@ ReactDOM.render(
   <React.StrictMode>
     <div className="container">
       <Editor
+        initialContent="<p>Some very nice content</p>"
         onSave={() => {console.log('saving')}} />
     </div>
   </React.StrictMode>,
