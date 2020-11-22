@@ -26,12 +26,12 @@
   "dependencies": {
     "@emotion/css": "^11.0.0",
     "escape-html": "^1.0.3",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "slate": "^0.57.2",
-    "slate-history": "^0.57.2",
-    "slate-hyperscript": "^0.57.2",
-    "slate-react": "^0.57.2"
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "slate": "^0.59.0",
+    "slate-history": "^0.59.0",
+    "slate-hyperscript": "^0.59.0",
+    "slate-react": "^0.59.0"
   },
   "scripts": {
     "start": "react-scripts start",
