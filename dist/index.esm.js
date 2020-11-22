@@ -1,11 +1,11 @@
-import React, { useRef, useEffect, useState, useMemo, useCallback } from 'react';
-import { useSlate, ReactEditor, withReact, Slate, Editable } from 'slate-react';
-import { withHistory } from 'slate-history';
-import { Text, Editor, Transforms, Range, createEditor, Node } from 'slate';
-import ReactDOM from 'react-dom';
-import { cx, css } from 'emotion';
-import { jsx } from 'slate-hyperscript';
+import { css, cx } from '@emotion/css';
 import escapeHtml from 'escape-html';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import ReactDOM from 'react-dom';
+import { createEditor, Editor, Node, Range, Text, Transforms } from 'slate';
+import { withHistory } from 'slate-history';
+import { jsx } from 'slate-hyperscript';
+import { Editable, ReactEditor, Slate, useSlate, withReact } from 'slate-react';
 
 function _defineProperty(obj, key, value) {
   if (key in obj) {

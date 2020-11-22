@@ -10,7 +10,7 @@ var slateReact = require('slate-react');
 var slateHistory = require('slate-history');
 var slate = require('slate');
 var ReactDOM = _interopDefault(require('react-dom'));
-var emotion = require('emotion');
+var emotion = require('@emotion/css');
 var slateHyperscript = require('slate-hyperscript');
 var escapeHtml = _interopDefault(require('escape-html'));
 

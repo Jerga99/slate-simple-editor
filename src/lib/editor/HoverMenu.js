@@ -1,11 +1,9 @@
-import React, { useEffect } from 'react';
-import { Editor } from 'slate'
-import { ReactEditor, useSlate } from 'slate-react'
-import { useRef } from 'react'
-import { Button, Icon, Menu, Portal } from './components'
-import { Range } from 'slate'
-import { css } from 'emotion'
-import { toggleFormat, isFormatActive, isBlockActive, toggleBlock } from './functions';
+import { css } from '@emotion/css';
+import React, { useEffect, useRef } from 'react';
+import { Editor, Range } from 'slate';
+import { ReactEditor, useSlate } from 'slate-react';
+import { Button, Icon, Menu, Portal } from './components';
+import { isBlockActive, isFormatActive, toggleBlock, toggleFormat } from './functions';
 
 const BlockButton = ({ format, icon }) => {
   const editor = useSlate()
