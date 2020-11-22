@@ -73,14 +73,14 @@
     "rollup-plugin-visualizer": "^4.2.0"
   },
   "peerDependencies": {
-    "react": ">=16.8.0",
-    "react-dom": ">=16.8.0",
-    "slate-history": "^0.57.2",
-    "slate-hyperscript": "^0.57.2",
-    "slate-react": "^0.57.2",
-    "slate": "^0.57.2",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "slate": "^0.59.0",
+    "slate-history": "^0.59.0",
+    "slate-hyperscript": "^0.59.0",
+    "slate-react": "^0.59.0",
     "escape-html": "^1.0.3",
-    "emotion": "^10.0.27",
-    "bootstrap": "^4.5.0"
+    "@emotion/css": "^11.0.0",
+    "bootstrap": "^4.5.3"
   }
 }
