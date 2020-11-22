@@ -1,6 +1,6 @@
 {
   "name": "slate-simple-editor",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "private": false,
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
@@ -67,8 +67,8 @@
     "sass": "^1.29.0"
   },
   "peerDependencies": {
-    "react": ">=17.0.1",
-    "react-dom": ">=17.0.1",
+    "react": ">=16.14.0",
+    "react-dom": ">=16.14.0",
     "slate-history": "^0.57.2",
     "slate-hyperscript": "^0.57.2",
     "slate-react": "^0.57.2",
