@@ -25,34 +25,42 @@ function _extends() {
   return _extends.apply(this, arguments);
 }
 
-const Button = /*#__PURE__*/React.forwardRef(({
-  className,
-  active,
-  reversed,
-  ...props
-}, ref) => /*#__PURE__*/React.createElement("span", _extends({}, props, {
-  ref: ref,
-  className: cx(className, css`
+const Button = /*#__PURE__*/React.forwardRef((_ref, ref) => {
+  let {
+    className,
+    active,
+    reversed,
+    ...props
+  } = _ref;
+  return /*#__PURE__*/React.createElement("span", _extends({}, props, {
+    ref: ref,
+    className: cx(className, css`
           cursor: pointer;
           color: ${reversed ? active ? 'white' : '#aaa' : active ? 'black' : '#ccc'};
         `)
-})));
-const Icon = /*#__PURE__*/React.forwardRef(({
-  className,
-  ...props
-}, ref) => /*#__PURE__*/React.createElement("span", _extends({}, props, {
-  ref: ref,
-  className: cx('material-icons', className, css`
+  }));
+});
+const Icon = /*#__PURE__*/React.forwardRef((_ref3, ref) => {
+  let {
+    className,
+    ...props
+  } = _ref3;
+  return /*#__PURE__*/React.createElement("span", _extends({}, props, {
+    ref: ref,
+    className: cx('material-icons', className, css`
         font-size: 18px;
         vertical-align: text-bottom;
       `)
-})));
-const Menu = /*#__PURE__*/React.forwardRef(({
-  className,
-  ...props
-}, ref) => /*#__PURE__*/React.createElement("div", _extends({}, props, {
-  ref: ref,
-  className: cx(className, css`
+  }));
+});
+const Menu = /*#__PURE__*/React.forwardRef((_ref5, ref) => {
+  let {
+    className,
+    ...props
+  } = _ref5;
+  return /*#__PURE__*/React.createElement("div", _extends({}, props, {
+    ref: ref,
+    className: cx(className, css`
         & > * {
           display: inline-block;
         }
@@ -60,10 +68,12 @@ const Menu = /*#__PURE__*/React.forwardRef(({
           margin-left: 15px;
         }
       `)
-})));
-const Portal = ({
-  children
-}) => {
+  }));
+});
+const Portal = _ref6 => {
+  let {
+    children
+  } = _ref6;
   return /*#__PURE__*/ReactDOM.createPortal(children, document.body);
 };
 
@@ -250,10 +260,11 @@ const toggleBlock = (editor, format) => {
   }
 };
 
-const BlockButton = ({
-  format,
-  icon
-}) => {
+const BlockButton = _ref => {
+  let {
+    format,
+    icon
+  } = _ref;
   const editor = useSlate();
   return /*#__PURE__*/React.createElement(Button, {
     reversed: true,
@@ -265,10 +276,11 @@ const BlockButton = ({
   }, /*#__PURE__*/React.createElement(Icon, null, icon));
 };
 
-const FormatButton = ({
-  format,
-  icon
-}) => {
+const FormatButton = _ref2 => {
+  let {
+    format,
+    icon
+  } = _ref2;
   const editor = useSlate();
   return /*#__PURE__*/React.createElement(Button, {
     reversed: true,
@@ -349,11 +361,13 @@ const HoveringToolbar = () => {
   })));
 };
 
-const Leaf = ({
-  attributes,
-  children,
-  leaf
-}) => {
+const Leaf = _ref => {
+  let {
+    attributes,
+    children,
+    leaf
+  } = _ref;
+
   if (leaf.bold) {
     children = /*#__PURE__*/React.createElement("strong", null, children);
   }
@@ -373,11 +387,13 @@ const Leaf = ({
   return /*#__PURE__*/React.createElement("span", attributes, children);
 };
 
-const Element = ({
-  attributes,
-  children,
-  element
-}) => {
+const Element = _ref2 => {
+  let {
+    attributes,
+    children,
+    element
+  } = _ref2;
+
   switch (element.type) {
     case 'block-quote':
       return /*#__PURE__*/React.createElement("blockquote", attributes, children);
@@ -410,7 +426,9 @@ const withLayout = (editor, value) => {
     normalizeNode
   } = editor;
 
-  editor.normalizeNode = ([node, path]) => {
+  editor.normalizeNode = _ref3 => {
+    let [node, path] = _ref3;
+
     if (path.length === 0) {
       if (editor.children.length < 1) {
         const title = {
@@ -468,13 +486,14 @@ const withLayout = (editor, value) => {
   return editor;
 };
 
-const BlogEditor = ({
-  saveMessage = "saving...",
-  onSave,
-  header = "Write your story",
-  loading,
-  initialContent
-}) => {
+const BlogEditor = _ref4 => {
+  let {
+    saveMessage = "saving...",
+    onSave,
+    header = "Write your story",
+    loading,
+    initialContent
+  } = _ref4;
   const [value, setValue] = useState(initialValue);
   const editor = useMemo(() => withLayout(withHistory(withReact(createEditor()))), []);
   const renderElement = useCallback(props => /*#__PURE__*/React.createElement(Element, props), []);
@@ -554,19 +573,22 @@ const initialValue = [{
   }]
 }];
 
-const SlateView = ({
-  initialContent
-}) => {
+const SlateView = _ref => {
+  let {
+    initialContent
+  } = _ref;
   const [value, setValue] = useState([]);
   const editor = useMemo(() => withReact(createEditor()), []);
   const renderElement = useCallback(props => /*#__PURE__*/React.createElement(Element, props), []);
   const renderLeaf = useCallback(props => /*#__PURE__*/React.createElement(Leaf, props), []);
 
-  const Leaf = ({
-    attributes,
-    children,
-    leaf
-  }) => {
+  const Leaf = _ref2 => {
+    let {
+      attributes,
+      children,
+      leaf
+    } = _ref2;
+
     if (leaf.bold) {
       children = /*#__PURE__*/React.createElement("strong", null, children);
     }
@@ -586,11 +608,13 @@ const SlateView = ({
     return /*#__PURE__*/React.createElement("span", attributes, children);
   };
 
-  const Element = ({
-    attributes,
-    children,
-    element
-  }) => {
+  const Element = _ref3 => {
+    let {
+      attributes,
+      children,
+      element
+    } = _ref3;
+
     switch (element.type) {
       case 'block-quote':
         return /*#__PURE__*/React.createElement("blockquote", attributes, children);

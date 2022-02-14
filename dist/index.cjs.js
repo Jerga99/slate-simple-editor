@@ -35,34 +35,42 @@ function _extends() {
   return _extends.apply(this, arguments);
 }
 
-const Button = /*#__PURE__*/React__default['default'].forwardRef(({
-  className,
-  active,
-  reversed,
-  ...props
-}, ref) => /*#__PURE__*/React__default['default'].createElement("span", _extends({}, props, {
-  ref: ref,
-  className: emotion.cx(className, emotion.css`
+const Button = /*#__PURE__*/React__default["default"].forwardRef((_ref, ref) => {
+  let {
+    className,
+    active,
+    reversed,
+    ...props
+  } = _ref;
+  return /*#__PURE__*/React__default["default"].createElement("span", _extends({}, props, {
+    ref: ref,
+    className: emotion.cx(className, emotion.css`
           cursor: pointer;
           color: ${reversed ? active ? 'white' : '#aaa' : active ? 'black' : '#ccc'};
         `)
-})));
-const Icon = /*#__PURE__*/React__default['default'].forwardRef(({
-  className,
-  ...props
-}, ref) => /*#__PURE__*/React__default['default'].createElement("span", _extends({}, props, {
-  ref: ref,
-  className: emotion.cx('material-icons', className, emotion.css`
+  }));
+});
+const Icon = /*#__PURE__*/React__default["default"].forwardRef((_ref3, ref) => {
+  let {
+    className,
+    ...props
+  } = _ref3;
+  return /*#__PURE__*/React__default["default"].createElement("span", _extends({}, props, {
+    ref: ref,
+    className: emotion.cx('material-icons', className, emotion.css`
         font-size: 18px;
         vertical-align: text-bottom;
       `)
-})));
-const Menu = /*#__PURE__*/React__default['default'].forwardRef(({
-  className,
-  ...props
-}, ref) => /*#__PURE__*/React__default['default'].createElement("div", _extends({}, props, {
-  ref: ref,
-  className: emotion.cx(className, emotion.css`
+  }));
+});
+const Menu = /*#__PURE__*/React__default["default"].forwardRef((_ref5, ref) => {
+  let {
+    className,
+    ...props
+  } = _ref5;
+  return /*#__PURE__*/React__default["default"].createElement("div", _extends({}, props, {
+    ref: ref,
+    className: emotion.cx(className, emotion.css`
         & > * {
           display: inline-block;
         }
@@ -70,11 +78,13 @@ const Menu = /*#__PURE__*/React__default['default'].forwardRef(({
           margin-left: 15px;
         }
       `)
-})));
-const Portal = ({
-  children
-}) => {
-  return /*#__PURE__*/ReactDOM__default['default'].createPortal(children, document.body);
+  }));
+});
+const Portal = _ref6 => {
+  let {
+    children
+  } = _ref6;
+  return /*#__PURE__*/ReactDOM__default["default"].createPortal(children, document.body);
 };
 
 const ELEMENT_TAGS = {
@@ -117,7 +127,7 @@ const TEXT_TAGS = {
 };
 
 const applyTag = node => {
-  node.text = node.text && escapeHtml__default['default'](node.text);
+  node.text = node.text && escapeHtml__default["default"](node.text);
 
   if (node.bold) {
     node.text = `<strong>${node.text}</strong>`;
@@ -260,34 +270,36 @@ const toggleBlock = (editor, format) => {
   }
 };
 
-const BlockButton = ({
-  format,
-  icon
-}) => {
+const BlockButton = _ref => {
+  let {
+    format,
+    icon
+  } = _ref;
   const editor = slateReact.useSlate();
-  return /*#__PURE__*/React__default['default'].createElement(Button, {
+  return /*#__PURE__*/React__default["default"].createElement(Button, {
     reversed: true,
     active: isBlockActive(editor, format),
     onMouseDown: event => {
       event.preventDefault();
       toggleBlock(editor, format);
     }
-  }, /*#__PURE__*/React__default['default'].createElement(Icon, null, icon));
+  }, /*#__PURE__*/React__default["default"].createElement(Icon, null, icon));
 };
 
-const FormatButton = ({
-  format,
-  icon
-}) => {
+const FormatButton = _ref2 => {
+  let {
+    format,
+    icon
+  } = _ref2;
   const editor = slateReact.useSlate();
-  return /*#__PURE__*/React__default['default'].createElement(Button, {
+  return /*#__PURE__*/React__default["default"].createElement(Button, {
     reversed: true,
     active: isFormatActive(editor, format),
     onMouseDown: event => {
       event.preventDefault();
       toggleFormat(editor, format);
     }
-  }, /*#__PURE__*/React__default['default'].createElement(Icon, null, icon));
+  }, /*#__PURE__*/React__default["default"].createElement(Icon, null, icon));
 };
 
 const HoveringToolbar = () => {
@@ -315,7 +327,7 @@ const HoveringToolbar = () => {
     el.style.top = `${rect.top + window.pageYOffset - el.offsetHeight}px`;
     el.style.left = `${rect.left + window.pageXOffset - el.offsetWidth / 2 + rect.width / 2}px`;
   });
-  return /*#__PURE__*/React__default['default'].createElement(Portal, null, /*#__PURE__*/React__default['default'].createElement(Menu, {
+  return /*#__PURE__*/React__default["default"].createElement(Portal, null, /*#__PURE__*/React__default["default"].createElement(Menu, {
     ref: ref,
     className: emotion.css`
           padding: 8px 7px 6px;
@@ -329,89 +341,93 @@ const HoveringToolbar = () => {
           border-radius: 4px;
           transition: opacity 0.75s;
         `
-  }, /*#__PURE__*/React__default['default'].createElement(FormatButton, {
+  }, /*#__PURE__*/React__default["default"].createElement(FormatButton, {
     format: "bold",
     icon: "format_bold"
-  }), /*#__PURE__*/React__default['default'].createElement(FormatButton, {
+  }), /*#__PURE__*/React__default["default"].createElement(FormatButton, {
     format: "italic",
     icon: "format_italic"
-  }), /*#__PURE__*/React__default['default'].createElement(FormatButton, {
+  }), /*#__PURE__*/React__default["default"].createElement(FormatButton, {
     format: "underlined",
     icon: "format_underlined"
-  }), /*#__PURE__*/React__default['default'].createElement(FormatButton, {
+  }), /*#__PURE__*/React__default["default"].createElement(FormatButton, {
     format: "code",
     icon: "code"
-  }), /*#__PURE__*/React__default['default'].createElement(BlockButton, {
+  }), /*#__PURE__*/React__default["default"].createElement(BlockButton, {
     format: "heading-one",
     icon: "looks_one"
-  }), /*#__PURE__*/React__default['default'].createElement(BlockButton, {
+  }), /*#__PURE__*/React__default["default"].createElement(BlockButton, {
     format: "heading-two",
     icon: "looks_two"
-  }), /*#__PURE__*/React__default['default'].createElement(BlockButton, {
+  }), /*#__PURE__*/React__default["default"].createElement(BlockButton, {
     format: "block-quote",
     icon: "format_quote"
-  }), /*#__PURE__*/React__default['default'].createElement(BlockButton, {
+  }), /*#__PURE__*/React__default["default"].createElement(BlockButton, {
     format: "numbered-list",
     icon: "format_list_numbered"
-  }), /*#__PURE__*/React__default['default'].createElement(BlockButton, {
+  }), /*#__PURE__*/React__default["default"].createElement(BlockButton, {
     format: "bulleted-list",
     icon: "format_list_bulleted"
   })));
 };
 
-const Leaf = ({
-  attributes,
-  children,
-  leaf
-}) => {
+const Leaf = _ref => {
+  let {
+    attributes,
+    children,
+    leaf
+  } = _ref;
+
   if (leaf.bold) {
-    children = /*#__PURE__*/React__default['default'].createElement("strong", null, children);
+    children = /*#__PURE__*/React__default["default"].createElement("strong", null, children);
   }
 
   if (leaf.italic) {
-    children = /*#__PURE__*/React__default['default'].createElement("em", null, children);
+    children = /*#__PURE__*/React__default["default"].createElement("em", null, children);
   }
 
   if (leaf.underlined) {
-    children = /*#__PURE__*/React__default['default'].createElement("u", null, children);
+    children = /*#__PURE__*/React__default["default"].createElement("u", null, children);
   }
 
   if (leaf.code) {
-    children = /*#__PURE__*/React__default['default'].createElement("code", null, children);
+    children = /*#__PURE__*/React__default["default"].createElement("code", null, children);
   }
 
-  return /*#__PURE__*/React__default['default'].createElement("span", attributes, children);
+  return /*#__PURE__*/React__default["default"].createElement("span", attributes, children);
 };
 
-const Element = ({
-  attributes,
-  children,
-  element
-}) => {
+const Element = _ref2 => {
+  let {
+    attributes,
+    children,
+    element
+  } = _ref2;
+
   switch (element.type) {
     case 'block-quote':
-      return /*#__PURE__*/React__default['default'].createElement("blockquote", attributes, children);
+      return /*#__PURE__*/React__default["default"].createElement("blockquote", attributes, children);
 
     case 'bulleted-list':
-      return /*#__PURE__*/React__default['default'].createElement("ul", attributes, children);
+      return /*#__PURE__*/React__default["default"].createElement("ul", attributes, children);
 
     case 'heading-one':
-      return /*#__PURE__*/React__default['default'].createElement("h1", attributes, children);
+      return /*#__PURE__*/React__default["default"].createElement("h1", attributes, children);
 
     case 'heading-two':
-      return /*#__PURE__*/React__default['default'].createElement("h2", attributes, children);
+      return /*#__PURE__*/React__default["default"].createElement("h2", attributes, children);
 
     case 'list-item':
-      return /*#__PURE__*/React__default['default'].createElement("li", attributes, children);
+      return /*#__PURE__*/React__default["default"].createElement("li", attributes, children);
 
     case 'numbered-list':
-      return /*#__PURE__*/React__default['default'].createElement("ol", attributes, children);
+      return /*#__PURE__*/React__default["default"].createElement("ol", attributes, children);
 
     case 'paragraph':
-      return /*#__PURE__*/React__default['default'].createElement("p", attributes, children);
+      return /*#__PURE__*/React__default["default"].createElement("p", attributes, children);
 
     default:
-      return /*#__PURE__*/React__default['default'].createElement("p", attributes, children);
+      return /*#__PURE__*/React__default["default"].createElement("p", attributes, children);
   }
 };
 
@@ -420,7 +436,9 @@ const withLayout = (editor, value) => {
     normalizeNode
   } = editor;
 
-  editor.normalizeNode = ([node, path]) => {
+  editor.normalizeNode = _ref3 => {
+    let [node, path] = _ref3;
+
     if (path.length === 0) {
       if (editor.children.length < 1) {
         const title = {
@@ -478,17 +496,18 @@ const withLayout = (editor, value) => {
   return editor;
 };
 
-const BlogEditor = ({
-  saveMessage = "saving...",
-  onSave,
-  header = "Write your story",
-  loading,
-  initialContent
-}) => {
+const BlogEditor = _ref4 => {
+  let {
+    saveMessage = "saving...",
+    onSave,
+    header = "Write your story",
+    loading,
+    initialContent
+  } = _ref4;
   const [value, setValue] = React.useState(initialValue);
   const editor = React.useMemo(() => withLayout(slateHistory.withHistory(slateReact.withReact(slate.createEditor()))), []);
-  const renderElement = React.useCallback(props => /*#__PURE__*/React__default['default'].createElement(Element, props), []);
-  const renderLeaf = React.useCallback(props => /*#__PURE__*/React__default['default'].createElement(Leaf, props), []);
+  const renderElement = React.useCallback(props => /*#__PURE__*/React__default["default"].createElement(Element, props), []);
+  const renderLeaf = React.useCallback(props => /*#__PURE__*/React__default["default"].createElement(Leaf, props), []);
   React.useEffect(() => {
     if (initialContent) {
       const document = new DOMParser().parseFromString(initialContent, 'text/html');
@@ -526,28 +545,28 @@ const BlogEditor = ({
     }
   };
 
-  return /*#__PURE__*/React__default['default'].createElement("div", {
+  return /*#__PURE__*/React__default["default"].createElement("div", {
     className: "slate-container"
-  }, /*#__PURE__*/React__default['default'].createElement("div", {
+  }, /*#__PURE__*/React__default["default"].createElement("div", {
     className: "editor-header"
-  }, /*#__PURE__*/React__default['default'].createElement("div", {
+  }, /*#__PURE__*/React__default["default"].createElement("div", {
     className: "editor-title"
-  }, header), /*#__PURE__*/React__default['default'].createElement("div", {
+  }, header), /*#__PURE__*/React__default["default"].createElement("div", {
     className: "save-button-container"
-  }, loading && /*#__PURE__*/React__default['default'].createElement("div", {
+  }, loading && /*#__PURE__*/React__default["default"].createElement("div", {
     className: "save-message"
-  }, saveMessage), /*#__PURE__*/React__default['default'].createElement("button", {
+  }, saveMessage), /*#__PURE__*/React__default["default"].createElement("button", {
     onClick: save,
     className: "btn btn-success"
-  }, "Save"))), /*#__PURE__*/React__default['default'].createElement("hr", null), /*#__PURE__*/React__default['default'].createElement(slateReact.Slate, {
+  }, "Save"))), /*#__PURE__*/React__default["default"].createElement("hr", null), /*#__PURE__*/React__default["default"].createElement(slateReact.Slate, {
     editor: editor,
     value: value,
     onChange: value => setValue(value)
-  }, /*#__PURE__*/React__default['default'].createElement(HoveringToolbar, null), /*#__PURE__*/React__default['default'].createElement(slateReact.Editable, {
+  }, /*#__PURE__*/React__default["default"].createElement(HoveringToolbar, null), /*#__PURE__*/React__default["default"].createElement(slateReact.Editable, {
     renderElement: renderElement,
     renderLeaf: renderLeaf,
     onKeyDown: onKeyDown
-  }), /*#__PURE__*/React__default['default'].createElement("style", null, `
+  }), /*#__PURE__*/React__default["default"].createElement("style", null, `
             @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
           `)));
 };
@@ -564,67 +583,72 @@ const initialValue = [{
   }]
 }];
 
-const SlateView = ({
-  initialContent
-}) => {
+const SlateView = _ref => {
+  let {
+    initialContent
+  } = _ref;
   const [value, setValue] = React.useState([]);
   const editor = React.useMemo(() => slateReact.withReact(slate.createEditor()), []);
-  const renderElement = React.useCallback(props => /*#__PURE__*/React__default['default'].createElement(Element, props), []);
-  const renderLeaf = React.useCallback(props => /*#__PURE__*/React__default['default'].createElement(Leaf, props), []);
+  const renderElement = React.useCallback(props => /*#__PURE__*/React__default["default"].createElement(Element, props), []);
+  const renderLeaf = React.useCallback(props => /*#__PURE__*/React__default["default"].createElement(Leaf, props), []);
 
-  const Leaf = ({
-    attributes,
-    children,
-    leaf
-  }) => {
+  const Leaf = _ref2 => {
+    let {
+      attributes,
+      children,
+      leaf
+    } = _ref2;
+
     if (leaf.bold) {
-      children = /*#__PURE__*/React__default['default'].createElement("strong", null, children);
+      children = /*#__PURE__*/React__default["default"].createElement("strong", null, children);
     }
 
     if (leaf.italic) {
-      children = /*#__PURE__*/React__default['default'].createElement("em", null, children);
+      children = /*#__PURE__*/React__default["default"].createElement("em", null, children);
     }
 
     if (leaf.underlined) {
-      children = /*#__PURE__*/React__default['default'].createElement("u", null, children);
+      children = /*#__PURE__*/React__default["default"].createElement("u", null, children);
     }
 
     if (leaf.code) {
-      children = /*#__PURE__*/React__default['default'].createElement("code", null, children);
+      children = /*#__PURE__*/React__default["default"].createElement("code", null, children);
     }
 
-    return /*#__PURE__*/React__default['default'].createElement("span", attributes, children);
+    return /*#__PURE__*/React__default["default"].createElement("span", attributes, children);
   };
 
-  const Element = ({
-    attributes,
-    children,
-    element
-  }) => {
+  const Element = _ref3 => {
+    let {
+      attributes,
+      children,
+      element
+    } = _ref3;
+
     switch (element.type) {
       case 'block-quote':
-        return /*#__PURE__*/React__default['default'].createElement("blockquote", attributes, children);
+        return /*#__PURE__*/React__default["default"].createElement("blockquote", attributes, children);
 
       case 'bulleted-list':
-        return /*#__PURE__*/React__default['default'].createElement("ul", attributes, children);
+        return /*#__PURE__*/React__default["default"].createElement("ul", attributes, children);
 
       case 'heading-one':
-        return /*#__PURE__*/React__default['default'].createElement("h1", attributes, children);
+        return /*#__PURE__*/React__default["default"].createElement("h1", attributes, children);
 
       case 'heading-two':
-        return /*#__PURE__*/React__default['default'].createElement("h2", attributes, children);
+        return /*#__PURE__*/React__default["default"].createElement("h2", attributes, children);
 
       case 'list-item':
-        return /*#__PURE__*/React__default['default'].createElement("li", attributes, children);
+        return /*#__PURE__*/React__default["default"].createElement("li", attributes, children);
 
       case 'numbered-list':
-        return /*#__PURE__*/React__default['default'].createElement("ol", attributes, children);
+        return /*#__PURE__*/React__default["default"].createElement("ol", attributes, children);
 
       case 'paragraph':
-        return /*#__PURE__*/React__default['default'].createElement("p", attributes, children);
+        return /*#__PURE__*/React__default["default"].createElement("p", attributes, children);
 
       default:
-        return /*#__PURE__*/React__default['default'].createElement("p", attributes, children);
+        return /*#__PURE__*/React__default["default"].createElement("p", attributes, children);
     }
   };
 
@@ -634,11 +658,11 @@ const SlateView = ({
       setValue(deserialize(document.body));
     }
   }, [initialContent]);
-  return /*#__PURE__*/React__default['default'].createElement(slateReact.Slate, {
+  return /*#__PURE__*/React__default["default"].createElement(slateReact.Slate, {
     editor: editor,
     value: value,
     onChange: value => setValue(value)
-  }, /*#__PURE__*/React__default['default'].createElement(slateReact.Editable, {
+  }, /*#__PURE__*/React__default["default"].createElement(slateReact.Editable, {
     readOnly: true,
     renderElement: renderElement,
     renderLeaf: renderLeaf

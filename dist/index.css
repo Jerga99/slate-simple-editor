@@ -1,80 +1,84 @@
 .slate-container html,
 .slate-container input,
 .slate-container textarea {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   line-height: 1.4;
-  background: #eee; }
-
+  background: #eee;
+}
 .slate-container .editor-header {
   display: flex;
-  justify-content: space-between; }
-  .slate-container .editor-header .editor-title {
-    font-weight: bold;
-    font-size: 2.5rem; }
-  .slate-container .editor-header .save-button-container {
-    display: flex;
-    align-self: center; }
-  .slate-container .editor-header .save-message {
-    display: flex;
-    align-self: center;
-    margin-right: 20px; }
-
+  justify-content: space-between;
+}
+.slate-container .editor-header .editor-title {
+  font-weight: bold;
+  font-size: 2.5rem;
+}
+.slate-container .editor-header .save-button-container {
+  display: flex;
+  align-self: center;
+}
+.slate-container .editor-header .save-message {
+  display: flex;
+  align-self: center;
+  margin-right: 20px;
+}
 .slate-container body {
-  margin: 0; }
-
+  margin: 0;
+}
 .slate-container p {
   margin: 0;
-  font-size: 20px; }
-
+  font-size: 20px;
+}
 .slate-container pre {
   padding: 10px;
   background-color: #eee;
-  white-space: pre-wrap; }
-
+  white-space: pre-wrap;
+}
 .slate-container :not(pre) > code {
   font-family: monospace;
   background-color: #eee;
-  padding: 3px; }
-
+  padding: 3px;
+}
 .slate-container img {
   max-width: 100%;
-  max-height: 20em; }
-
+  max-height: 20em;
+}
 .slate-container blockquote {
   border-left: 2px solid #ddd;
   margin-left: 0;
   margin-right: 0;
   padding-left: 10px;
   color: #aaa;
-  font-style: italic; }
-
-.slate-container blockquote[dir='rtl'] {
+  font-style: italic;
+}
+.slate-container blockquote[dir=rtl] {
   border-left: none;
   padding-left: 0;
   padding-right: 10px;
-  border-right: 2px solid #ddd; }
-
+  border-right: 2px solid #ddd;
+}
 .slate-container table {
-  border-collapse: collapse; }
-
+  border-collapse: collapse;
+}
 .slate-container td {
   padding: 10px;
-  border: 2px solid #ddd; }
-
+  border: 2px solid #ddd;
+}
 .slate-container input {
   box-sizing: border-box;
   font-size: 0.85em;
   width: 100%;
   padding: 0.5em;
   border: 2px solid #ddd;
-  background: #fafafa; }
-
+  background: #fafafa;
+}
 .slate-container input:focus {
   outline: 0;
-  border-color: blue; }
-
+  border-color: blue;
+}
 .slate-container [data-slate-editor] > * + * {
-  margin-top: 1em; }
-
+  margin-top: 1em;
+}
 .slate-container h2 {
-  margin-top: 5px !important; }
+  margin-top: 5px !important;
+}
