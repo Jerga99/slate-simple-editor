@@ -4,7 +4,7 @@ import { ReactEditor, useSlate } from 'slate-react'
 import { useRef } from 'react'
 import { Button, Icon, Menu, Portal } from './components'
 import { Range } from 'slate'
-import { css } from 'emotion'
+import { css } from '@emotion/css'
 import { toggleFormat, isFormatActive, isBlockActive, toggleBlock } from './functions';
 
 const BlockButton = ({ format, icon }) => {
