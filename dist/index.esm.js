@@ -13665,7 +13665,7 @@ const BlogEditor = _ref4 => {
         delete deserialized[0].text;
         setValue([...initialValue, ...deserialized]);
       } else {
-        setValue(deserialize(document.body));
+        setValue(deserialized);
       }
     }
   }, [initialContent]);
@@ -13690,6 +13690,7 @@ const BlogEditor = _ref4 => {
     }
   };
 
+  editor.children = value;
   return /*#__PURE__*/React.createElement("div", {
     className: "slate-container"
   }, /*#__PURE__*/React.createElement("div", {

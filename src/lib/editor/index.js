@@ -103,7 +103,7 @@ const BlogEditor = ({
         delete deserialized[0].text;
         setValue([...initialValue, ...deserialized]);
       } else {
-        setValue(deserialize(document.body))
+        setValue(deserialized)
       }
     }
   }, [initialContent]);
@@ -121,6 +121,8 @@ const BlogEditor = ({
       save();
     }
   }
+  
+  editor.children = value
 
   return (
     <div className="slate-container">
